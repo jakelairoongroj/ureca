@@ -16,6 +16,8 @@
 \usepackage[backend=biber,style=numeric,maxbibnames=9]{biblatex}
 \addbibresource{references.bib}
 
+\usepackage{hyperref}
+
 \usepackage{microtype}
 \usepackage{parskip}
 
@@ -23,9 +25,9 @@
 
 \title{Approximation Spaces and Deep Learning}
 \author{
-\\[-7pt] Jake Lai\thanks{Nanyang Business School, Nanyang Technological University. lair0004@e.ntu.edu.sg}
+\\[-7pt] Jake Lai\thanks{Nanyang Business School, Nanyang Technological University. \url{lair0004@e.ntu.edu.sg}}
 \and
-{\normalsize Supervisor} \\ Philipp Harms\thanks{Division of Mathematical Sciences, School of Physical and Mathematical Sciences, Nanyang Technological University. philipp.harms@ntu.edu.sg}
+{\normalsize Supervisor} \\ Philipp Harms\thanks{Division of Mathematical Sciences, School of Physical and Mathematical Sciences, Nanyang Technological University. \url{philipp.harms@ntu.edu.sg}}
 }
 \date{}
 \maketitle
@@ -120,7 +122,7 @@ We now turn to some fundamental theorems on approximation spaces.
         \lVert f_k \rVert_X &\leq c_X(\lVert f-f_{k-1}^* \rVert_X + \lVert f-f_{k-2}^* \rVert_X) \\
         &\leq 4c_X E_X(f,\Sigma_{2^{k-2}-1}).
     \end{align*}
-    Applying \ref{expnorm}, we find that $\left( 2^{k\alpha} \lVert f_k \rVert_X \right) \in \ell^q$ and
+    Applying Proposition \ref{expnorm}, we find that $\left( 2^{k\alpha} \lVert f_k \rVert_X \right) \in \ell^q$ and
     \[\lVert f \rVert_{X_q^\alpha}^\mathrm{rep} \leq 2^{2\alpha+2}c_X \lVert f \rVert_{X_q^\alpha}^\mathrm{exp}.\]
 
     Call a quasi-norm $\lVert \cdot \rVert$ a $p$\textit{-norm} if $\lVert f+g \rVert \leq \lVert f \rVert^p + \lVert g \rVert^p$ for all $f,g$. Without loss of generality, assume that $\lVert \cdot \rVert_X$ is a $p$-norm, where $0 < p < q$. If $f$ has a representation $f = \sum_{k=0}^\infty f_k$ satisfying $f_k \in \Sigma_{2^k}$ and $\left( 2^{k\alpha} \lVert f_k \rVert_X \right) \in \ell^q$, then since $\sum_{k=0}^{n-1} f_k \in \Sigma_{2^n-1}$, we have that
@@ -133,7 +135,7 @@ We now turn to some fundamental theorems on approximation spaces.
         &\leq c_1\sum_{k=1}^{\infty} 2^{k\beta r}\lVert f_k \rVert_X^q \sum_{n=0}^k 2^{n(\alpha q - \beta r)} \\
         &\leq c_2\sum_{k=1}^{\infty} (2^{k\alpha}\lVert f_k \rVert_X)^q < \infty.
     \end{align*}
-    Thus, $\lVert f \rVert_{X_q^\alpha}^\mathrm{exp} \leq c\left\lVert \left( 2^{k\alpha} \lVert f_k \rVert_X \right) \right\rVert_{\ell^q}$, and by \ref{expnorm}, $f \in X_q^\alpha$ and $\lVert f \rVert_{X_q^\alpha}^\mathrm{exp} \leq c\lVert f \rVert_{X_q^\alpha}^\mathrm{rep}$. A similar argument follows for $q = \infty$.
+    Thus, $\lVert f \rVert_{X_q^\alpha}^\mathrm{exp} \leq c\left\lVert \left( 2^{k\alpha} \lVert f_k \rVert_X \right) \right\rVert_{\ell^q}$, and by Proposition \ref{expnorm}, $f \in X_q^\alpha$ and $\lVert f \rVert_{X_q^\alpha}^\mathrm{exp} \leq c\lVert f \rVert_{X_q^\alpha}^\mathrm{rep}$. A similar argument follows for $q = \infty$.
 \end{proof}
 
 \begin{corollary}
@@ -210,7 +212,7 @@ We can now treat deep neural networks with the formalism of approximation spaces
 \end{definition}
 
 \begin{definition}
-    Let $L$ be a positive integer (possibly $\infty$), W and N be nonnegative integers (also possibly $\infty$), and $\Omega \subset \mathbb{R}^d$ nonempty. $\mathcal{NN}_{W,L,N}^{\varrho,d,k}$ is the set of all networks $\Phi$ with activation function $\varrho$, \textit{input dimension} $N_0 = d$, \textit{output dimension} $N_L = k$, number of weights $W(\Phi) \leq W$, depth $L(\Phi) \leq L$, and number of hidden neurons $N(\Phi) \leq N$. $\mathtt{NN}_{W,L,N}^{\varrho,d,k}$ is the set of all functions representable by networks in $\mathcal{NN}_{W,L,N}^{\varrho,d,k}$; i.e., $\mathtt{NN}_{W,L,N}^{\varrho,d,k} = \{ \mathcal{R}(\Phi): \Phi \in \mathcal{NN}_{W,L,N}^{\varrho,d,k}$. Finally, $\mathtt{NN}_{W,L,N}^{\varrho,d,k}(\Omega)$ is the set of all such functions restricted to $\Omega$.
+    Let $L$ be a positive integer (possibly $\infty$), W and N be nonnegative integers (also possibly $\infty$), and $\Omega \subset \mathbb{R}^d$ nonempty. $\mathcal{NN}_{W,L,N}^{\varrho,d,k}$ is the set of all networks $\Phi$ with activation function $\varrho$, \textit{input dimension} $N_0 = d$, \textit{output dimension} $N_L = k$, number of weights $W(\Phi) \leq W$, depth $L(\Phi) \leq L$, and number of hidden neurons $N(\Phi) \leq N$. $\mathtt{NN}_{W,L,N}^{\varrho,d,k}$ is the set of all functions representable by networks in $\mathcal{NN}_{W,L,N}^{\varrho,d,k}$; i.e., $\mathtt{NN}_{W,L,N}^{\varrho,d,k} = \{ \mathcal{R}(\Phi): \Phi \in \mathcal{NN}_{W,L,N}^{\varrho,d,k} \}$. Finally, $\mathtt{NN}_{W,L,N}^{\varrho,d,k}(\Omega)$ is the set of all such functions restricted to $\Omega$.
 \end{definition}
 
 \begin{note}
